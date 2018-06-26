@@ -22,7 +22,7 @@ int		ft_getline(int fd, char **store, char **leftover)
 	if (fd < 0)
 		return (-1);
 	*store = ft_strdup("");
-	*store = ft_strcpy(*store, *leftover);
+	*store = ft_strcpy(*store, *leftover);		//memory trick. strcpy causes buffer overrun in some cases and essentially corrupts other memory
 	//*store = ft_strdup(*leftover);
 	while (0 < (rd = read(fd, buf, BUFF_SIZE)))
 	{

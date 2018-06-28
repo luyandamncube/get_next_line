@@ -33,16 +33,18 @@ int		ft_getline(int fd, char **store, char **leftover)
 			//*leftover = ft_strdup(nlpos + 1);
 			*nlpos = '\0';
 			*store = ft_strjoin(*store, buf);
+			//printf("FOUND: %s\n", *store);
 			return (ft_strlen(*store));
 		}
 		*store = ft_strjoin(*store, buf);
+		//printf("NOT FOUND: %s\n", *store);
 	}
 	return (ft_strlen(*store));
 }
 
 int		get_next_line(const int fd, char **line)
 {
-	char 	*leftover;							//might need to be static, try static if you have memory corruption
+	static char 	*leftover;							//might need to be static, try static if you have memory corruption
 	int 			ret;
 	
 	if (leftover == NULL)

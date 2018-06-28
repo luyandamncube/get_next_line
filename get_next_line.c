@@ -11,16 +11,16 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 int		ft_getline(int fd, char **store, char **leftover)
 {
 	char	*nlpos;
-	char	buf[BUFF_SIZE + 1];
+	char	*buf;// [BUFF_SIZE + 1];
 	int		rd;
 
 	if (fd < 0)
 		return (-1);
+		buf = malloc(BUFF_SIZE +1);
 	*store = ft_strdup("");
 	*store = ft_strcpy(*store, *leftover);		//memory trick. strcpy causes buffer overrun in some cases and essentially corrupts other memory
 	//*store = ft_strdup(*leftover);
@@ -33,12 +33,13 @@ int		ft_getline(int fd, char **store, char **leftover)
 			//*leftover = ft_strdup(nlpos + 1);
 			*nlpos = '\0';
 			*store = ft_strjoin(*store, buf);
-			//printf("FOUND: %s\n", *store);
+			free(buf);
+
 			return (ft_strlen(*store));
 		}
 		*store = ft_strjoin(*store, buf);
-		//printf("NOT FOUND: %s\n", *store);
 	}
+	free(buf);
 	return (ft_strlen(*store));
 }
 
@@ -52,11 +53,15 @@ int		get_next_line(const int fd, char **line)
 		leftover = malloc(BUFF_SIZE + 1);
 		ft_bzero(leftover, BUFF_SIZE + 1);
 	}
-	if (fd < 0 || BUFF_SIZE < 1)
+	if (fd < 0 || BUFF_SIZE < 1 || !line)
 		return (-1);
 	if (0 < (ret = ft_getline(fd, line, &leftover)))
+	{
+		free(*line);
 		return (1);
-	if (ret == 0)
+	}
+	// if (i == 0 && (line_read[fd] == NULL || line_read[fd][0] == '\0'))
+	if (ret ==) // 0 leftover[0] == '\0')// ) && (*line == '\0' || line == NULL))		//Sanity check for empty string
 		return (0);
 	if (ret < 0)
 		return (-1);

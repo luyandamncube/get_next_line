@@ -6,7 +6,7 @@
 /*   By: lmncube <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 15:27:36 by lmncube           #+#    #+#             */
-/*   Updated: 2018/06/26 15:29:02 by lmncube          ###   ########.fr       */
+/*   Updated: 2018/06/28 10:27:28 by lmncube          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int     main(int argc, char **argv)
 {
 	int             fd;
 	char			*store;
+	
+	store = NULL;
 	if (argc != 2)
 		printf("USAGE: ./test_ filename\n");
 	else

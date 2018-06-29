@@ -16,7 +16,7 @@
 # include "libft/libft.h"
 # include <fcntl.h>
 
-int		        get_next_line(const int fd, char **line);
+int		get_next_line(const int fd, char **line);
 int		ft_getline(int fd, char **store, char **leftover);
 
 #endif

@@ -5,17 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmncube <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/25 13:15:58 by lmncube           #+#    #+#             */
-/*   Updated: 2018/06/26 14:33:25 by lmncube          ###   ########.fr       */
+/*   Created: 2018/07/01 17:07:04 by lmncube           #+#    #+#             */
+/*   Updated: 2018/07/01 17:20:39 by lmncube          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void			ft_swap(char **store, char *buf)
+static void		ft_swap(char **store, char *buf)
 {
-	char 	*tempstore;
-
+	char	*tempstore;
+	
 	if (*store)
 	{
 		tempstore = *store;
@@ -25,7 +25,7 @@ static void			ft_swap(char **store, char *buf)
 	}
 }
 
-int 			 ft_nlpos(char *str)
+int			ft_nlpos(char *str)
 {
 	int 	k;
 
@@ -53,7 +53,7 @@ static int		ft_getline(int fd, char **line, char **leftover)
 		nlpos = ft_nlpos(*leftover);
 		if (0 <= (nlpos))
 		{
-			break;
+			break ;
 		}
 	}
 	nlpos = ft_nlpos(*leftover);
@@ -66,21 +66,24 @@ static int		ft_getline(int fd, char **line, char **leftover)
 	return (ft_strlen(*line));
 }
 
-int		get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
-	static char 	*leftover;
-	int 			bytesread;
-	
+	static char		*leftover;
+	int				bytesread;
+
 	if (fd < 0 || BUFF_SIZE < 1 || !line || read(fd, "", 0) < 0)
 		return (-1);
 	if (leftover == NULL)
 		leftover = ft_strnew(0);
 	bytesread = ft_getline(fd, line, &leftover);
-	//if (fd > 0 && (line == 0 || *line == '\0'))
-		//return (1);
+	if (!bytesread || line == NULL || *line == '\0')
+		return (bytesread);
 	if (bytesread < 0)
 		return (-1);
-	if (*leftover == 0 && bytesread == 0)
+	if (*line == NULL && bytesread == 0)
+	{
+		*line = NULL;
 		return (0);
+	}
 	return (1);
 }

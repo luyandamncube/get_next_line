@@ -3,4 +3,5 @@ gcc -Wall -Werror -Wextra get_next_line.c main.c \
 ./libft/ft_strjoin.c ./libft/ft_strlen.c \
 ./libft/ft_strcpy.c ./libft/ft_strcat.c \
 ./libft/ft_bzero.c ./libft/ft_strnew.c \
-./libft/ft_strsub.c ./libft/ft_strdel.c -ggdb3 -o run
+./libft/ft_strsub.c ./libft/ft_strdel.c \
+./libft/ft_strchr.c  ./libft/ft_strcmp.c -ggdb3 -o run

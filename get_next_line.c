@@ -11,13 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-/*
-void		ft_plugleaks(char *s1, char *s2)
-{
-	ft_strdel(&s1);
-	ft_strdel(&s2);
-}
-*/	
+
 static void			ft_swap(char **store, char *buf)
 {
 	char 	*tempstore;
@@ -31,76 +25,50 @@ static void			ft_swap(char **store, char *buf)
 	}
 }
 
-static size_t 			 ft_nlpos(char *str)
+int 			 ft_nlpos(char *str)
 {
-	size_t 	k;
+	int 	k;
 
 	k = 0;
-	while (str[k] != '\n')
+	while (str[k] != 0)
 	{
-		if (str[k] == '\0')
-			return (-1);
+		if (str[k] == '\n')
+			return (k);
 		k++;
 	}
-	return (k);
+	return (-1);
 }
-/*
 
-int		ft_getline(int fd, char **store, char **leftover)
+static int		ft_getline(int fd, char **line, char **leftover)
 {
-	char	*nlpos;
+	int		nlpos;
 	char	buf[BUFF_SIZE + 1];
-	
+	char	*temp;
 	int		rd;
 
-	*store = ft_strdup(*leftover);
 	while (0 < (rd = read(fd, buf, BUFF_SIZE)))
 	{
-		//tempstore = *store;										//Placement imoirtant. for EACH iteration the pointer needs to be reset before use
-		buf[rd] = '\0';
-		if (NULL != (nlpos = ft_memchr(buf, '\n', BUFF_SIZE)))
-		{
-			*leftover = ft_strdup(nlpos + 1);
-			*nlpos = '\0';
-			ft_swap(store, buf);
-			return (ft_strlen(*store));
-		}
-		ft_swap(store, buf);
-	}
-	return (ft_strlen(*store));
-}
-*/
-
-int		ft_getline(int fd, char **line, char **leftover)
-{
-	size_t	nlpos;
-	char	buf[BUFF_SIZE + 1];
-	
-	int		rd;
-
-	*line = ft_strdup(*leftover);
-	while (0 < (rd = read(fd, buf, BUFF_SIZE)))
-	{
-		//tempstore = *store;										//Placement imoirtant. for EACH iteration the pointer needs to be reset before use
 		buf[rd] = '\0';
 		ft_swap(leftover, buf);
-		if (0 < (nlpos = ft_nlpos(*leftover)))
+		nlpos = ft_nlpos(*leftover);
+		if (0 <= (nlpos))
 		{
 			break;
 		}
-		//ft_swap(store, buf);
 	}
+	nlpos = ft_nlpos(*leftover);
+	if (nlpos < 0)
+		nlpos = ft_strlen(*leftover);
 	*line = ft_strsub(*leftover, 0, nlpos);
-	*leftover = ft_strdup(*leftover + nlpos + 1);
-
-	//*nlpos = '\0';
-		
+	temp = *leftover;
+	*leftover = ft_strdup(temp + nlpos + 1);
+	free(temp);
 	return (ft_strlen(*line));
 }
 
 int		get_next_line(const int fd, char **line)
 {
-	static char 	*leftover;				//might need to be static, try static if you have memory corruption
+	static char 	*leftover;
 	int 			bytesread;
 	
 	if (fd < 0 || BUFF_SIZE < 1 || !line || read(fd, "", 0) < 0)
@@ -108,14 +76,11 @@ int		get_next_line(const int fd, char **line)
 	if (leftover == NULL)
 		leftover = ft_strnew(0);
 	bytesread = ft_getline(fd, line, &leftover);
-
+	//if (fd > 0 && (line == 0 || *line == '\0'))
+		//return (1);
 	if (bytesread < 0)
 		return (-1);
-	//if ((line == '\0' || line == NULL) && bytesread == 0) 
 	if (*leftover == 0 && bytesread == 0)
 		return (0);
-	//if (bytesread == 0 && *line[0] == '\n')
-		//return (1);
-
 	return (1);
 }

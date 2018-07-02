@@ -13,11 +13,16 @@
 
 #include "get_next_line.h"
 #include <stdio.h>
+# include <fcntl.h>
+
+int				ft_nlpos(char *str);
 
 int     main(int argc, char **argv)
 {
 	int             fd;
 	char			*store;
+	char			*nlpos;
+	int 			result;
 	if (argc != 2)
 		printf("USAGE: ./test_ filename\n");
 	else
@@ -25,24 +30,35 @@ int     main(int argc, char **argv)
 		fd = open(argv[1], O_RDONLY);
 		if (fd < 0)
 			printf("Error reading file\n");
-		else
+
+		while ((result = get_next_line(fd, &store)) == 1)
 		{
-			printf("READ: %d\n", get_next_line(fd, &store));
+			printf("RES: %d\n, ", result);
+			nlpos = ft_strchr(store, '\n');
 			printf("CONTENT: %s\n", store);
-			printf("////////// NEXT ///////////\n");
-			printf("READ: %d\n", get_next_line(fd, &store));
-			printf("CONTENT: %s\n", store);
-			printf("////////// NEXT ///////////\n");
-			printf("READ: %d\n", get_next_line(fd, &store));
-			printf("CONTENT: %s\n", store);
-			printf("////////// NEXT ///////////\n");
-			printf("READ: %d\n", get_next_line(fd, &store));
-			printf("CONTENT: %s\n", store);
-			printf("////////// NEXT ///////////\n");
-			printf("READ: %d\n", get_next_line(fd, &store));
-			printf("CONTENT: %s\n", store);
-			printf("////////// NEXT ///////////\n");
+			
+			//printf("POS %s\n", nlpos); 
+			printf("\n////////// NEXT ///////////\n");
+
 		}
+		/*
+			printf("READ: %d\n", get_next_line(fd, &store));
+			printf("CONTENT: %s\n", store);
+
+			printf("////////// NEXT ///////////\n");
+			printf("READ: %d\n", get_next_line(fd, &store));
+			printf("CONTENT: %s\n", store);
+			printf("////////// NEXT ///////////\n");
+			printf("READ: %d\n", get_next_line(fd, &store));
+			printf("CONTENT: %s\n", store);
+			printf("////////// NEXT ///////////\n");
+			printf("READ: %d\n", get_next_line(fd, &store));
+			printf("CONTENT: %s\n", store);
+			printf("////////// NEXT ///////////\n");
+			printf("READ: %d\n", get_next_line(fd, &store));
+			printf("CONTENT: %s\n", store);
+			printf("////////// NEXT ///////////\n");
+			*/
 	}
-	return (0);
+		return (0);
 }

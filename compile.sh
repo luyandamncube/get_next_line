@@ -1,4 +1,4 @@
-gcc -Wall -Werror -Wextra get_next_line.c main.c \
+gcc -Wall -Werror -Wextra get_next_line.c mainTBGNL_c.c \
 ./libft/ft_strdup.c ./libft/ft_memchr.c \
 ./libft/ft_strjoin.c ./libft/ft_strlen.c \
 ./libft/ft_strcpy.c ./libft/ft_strcat.c \

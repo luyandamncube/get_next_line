@@ -17,3 +17,7 @@ Concepts tested:
 
 ## Usage
 
+How to install valgrind on Linux
+    `sudo apt-get install valgrind`
+
+

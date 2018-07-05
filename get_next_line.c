@@ -12,19 +12,6 @@
 
 #include "get_next_line.h"
 
-static void		ft_swapmem(char **store, char *buf)
-{
-	char	*tempstore;
-
-	if (*store)
-	{
-		tempstore = *store;
-		*store = ft_strjoin(tempstore, buf);
-		free(tempstore);
-		tempstore = NULL;
-	}
-}
-
 int				ft_nlpos(char *str)
 {
 	int		k;
@@ -102,15 +89,15 @@ static int		ft_getline(int fd, char **line, char **leftover)
 
 int				get_next_line(const int fd, char **line)
 {
-	static char		*leftover;//[9999];
+	static char		*leftover[9999];
 	int				bytesread;
 
 	if (fd < 0 || BUFF_SIZE < 1 || !line || read(fd, "", 0) < 0)
 		return (-1);
-	if (leftover/*[fd]*/ == NULL)
-		leftover/*[fd]*/ = ft_strnew(0);
-	bytesread = ft_getline(fd, line, &leftover/*[fd]*/);
-	if (ft_strlen(leftover/*[fd]*/) == 0 && bytesread == 0)
+	if (leftover[fd] == NULL)
+		leftover[fd] = ft_strnew(0);
+	bytesread = ft_getline(fd, line, &leftover[fd]);
+	if (ft_strlen(leftover[fd]) == 0 && bytesread == 0)
 		return (0);
 	return (1);
 }

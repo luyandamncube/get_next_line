@@ -1,7 +1,5 @@
-gcc -Wall -Werror -Wextra get_next_line.c mainTBGNL_c.c \
-./libft/ft_strdup.c ./libft/ft_memchr.c \
-./libft/ft_strjoin.c ./libft/ft_strlen.c \
-./libft/ft_strcpy.c ./libft/ft_strcat.c \
-./libft/ft_bzero.c ./libft/ft_strnew.c \
-./libft/ft_strsub.c ./libft/ft_strdel.c \
-./libft/ft_strchr.c  ./libft/ft_strcmp.c -ggdb3 -o run
+make re ./libft
+gcc -Wall -Werror -Wextra get_next_line.c mainc.c -I ./libft 
+gcc -Wall -Werror -Wextra get_next_line.c get_next_line.c -I ./libft
+gcc -o run main.o get_next_line.o -L ./libft -lft
+#-ggdb3 -o run

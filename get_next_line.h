@@ -14,9 +14,6 @@
 # define GET_NEXT_LINE_H
 # define BUFF_SIZE 8u
 # include "libft/libft.h"
-# include <unistd.h>
-# include <stddef.h>
-# include <stdlib.h>
 
 int		get_next_line(const int fd, char **line);
 

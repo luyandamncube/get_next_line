@@ -36,29 +36,10 @@ int     main(int argc, char **argv)
 			printf("RES: %d\n, ", result);
 			nlpos = ft_strchr(store, '\n');
 			printf("CONTENT: %s\n", store);
-			
-			//printf("POS %s\n", nlpos); 
-			printf("\n////////// NEXT ///////////\n");
+
+			printf("\n////////// NEXT LINE ///////////\n");
 
 		}
-		/*
-			printf("READ: %d\n", get_next_line(fd, &store));
-			printf("CONTENT: %s\n", store);
-
-			printf("////////// NEXT ///////////\n");
-			printf("READ: %d\n", get_next_line(fd, &store));
-			printf("CONTENT: %s\n", store);
-			printf("////////// NEXT ///////////\n");
-			printf("READ: %d\n", get_next_line(fd, &store));
-			printf("CONTENT: %s\n", store);
-			printf("////////// NEXT ///////////\n");
-			printf("READ: %d\n", get_next_line(fd, &store));
-			printf("CONTENT: %s\n", store);
-			printf("////////// NEXT ///////////\n");
-			printf("READ: %d\n", get_next_line(fd, &store));
-			printf("CONTENT: %s\n", store);
-			printf("////////// NEXT ///////////\n");
-			*/
 	}
 		return (0);
 }

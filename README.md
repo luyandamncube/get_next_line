@@ -6,7 +6,7 @@
 
 GNL Project
 
-This projects is about creating a function that, allows to read a line ending with a newline character ('\n') 
+This project is about creating a function that, allows to read a line ending with a newline character ('\n') 
 from a file descriptor, without knowing its size beforehand. This was a great opportunity to understand how memory
 leaks occur and how to use utilities such as valgrind (with debugging flags) to identify and stop leaks.
 

@@ -1,8 +1,11 @@
-# wethinkcode_
+
+# wethinkcode_ Johannesburg
+
+![wethinkcode_ logo](resources/wtc.gif)
 
 ## get_next_line
 
-<img src="resources/get_next_line-finalmark.png" width="350" />
+![final mark](resources/get_next_line-finalmark.png)
 
 GNL Project
 

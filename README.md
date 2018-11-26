@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="resources/logo.png"/>
+  <img src="resources/003.png"/>
 </p>
 
 # wethinkcode_ Johannesburg
